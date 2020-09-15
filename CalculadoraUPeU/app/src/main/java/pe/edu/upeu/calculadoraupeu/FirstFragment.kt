@@ -35,8 +35,17 @@ class FirstFragment : Fragment(),View.OnClickListener {
         val btn4=view.findViewById<Button>(R.id.btn4)
         val btn5=view.findViewById<Button>(R.id.btn5)
         val btn6=view.findViewById<Button>(R.id.btn6)
+        val btn1=view.findViewById<Button>(R.id.btn1)
+        val btn2=view.findViewById<Button>(R.id.btn2)
+        val btn3=view.findViewById<Button>(R.id.btn3)
+        val btn0=view.findViewById<Button>(R.id.btn0)
+
+        val btnPunto=view.findViewById<Button>(R.id.btnPunto)
 
         val btnSuma=view.findViewById<Button>(R.id.btnSuma)
+        val btnMenos=view.findViewById<Button>(R.id.btnMenos)
+        val btnDiv=view.findViewById<Button>(R.id.btnDiv)
+        val btnMulti=view.findViewById<Button>(R.id.btnMulti)
         val btnIgual=view.findViewById<Button>(R.id.btnIgual)
         /*view.findViewById<Button>(R.id.button_first).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
@@ -47,7 +56,15 @@ class FirstFragment : Fragment(),View.OnClickListener {
         btn6!!.setOnClickListener(this)
         btn5!!.setOnClickListener(this)
         btn4!!.setOnClickListener(this)
+        btn1!!.setOnClickListener(this)
+        btn2!!.setOnClickListener(this)
+        btn3!!.setOnClickListener(this)
+        btn0!!.setOnClickListener(this)
+        btnPunto!!.setOnClickListener(this)
         btnSuma!!.setOnClickListener(this)
+        btnMenos!!.setOnClickListener(this)
+        btnDiv!!.setOnClickListener(this)
+        btnMulti!!.setOnClickListener(this)
         btnIgual!!.setOnClickListener(this)
 
     }
@@ -60,6 +77,13 @@ class FirstFragment : Fragment(),View.OnClickListener {
             R.id.btn6->{ txtResultado.setText(txtResultado.text.toString()+"6")}
             R.id.btn5->{ txtResultado.setText(txtResultado.text.toString()+"5")}
             R.id.btn4->{ txtResultado.setText(txtResultado.text.toString()+"4")}
+            R.id.btn3->{ txtResultado.setText(txtResultado.text.toString()+"3")}
+            R.id.btn2->{ txtResultado.setText(txtResultado.text.toString()+"2")}
+            R.id.btn1->{ txtResultado.setText(txtResultado.text.toString()+"1")}
+            R.id.btn0->{ txtResultado.setText(txtResultado.text.toString()+"0")}
+            R.id.btnPunto->{
+                if (!txtResultado.text.toString().contains(".")){ txtResultado.setText(txtResultado.text.toString()+".") }
+            }
 
 
             R.id.btnSuma->{
@@ -67,11 +91,30 @@ class FirstFragment : Fragment(),View.OnClickListener {
                 operador='+'
                 txtResultado.setText("")
             }
+            R.id.btnMenos->{
+                valorA=txtResultado.text.toString()
+                operador='-'
+                txtResultado.setText("")
+            }
+            R.id.btnDiv->{
+                valorA=txtResultado.text.toString()
+                operador='/'
+                txtResultado.setText("")
+            }
+            R.id.btnMulti->{
+                valorA=txtResultado.text.toString()
+                operador='*'
+                txtResultado.setText("")
+            }
+
 
 
             R.id.btnIgual->{
                 when(operador){
                     '+'->{resultado=valorA?.toFloat()+txtResultado.text.toString().toFloat()}
+                    '-'->{resultado=valorA?.toFloat()-txtResultado.text.toString().toFloat()}
+                    '/'->{resultado=valorA?.toFloat()/txtResultado.text.toString().toFloat()}
+                    '*'->{resultado=valorA?.toFloat()*txtResultado.text.toString().toFloat()}
                 }
                 txtResultado.setText(resultado.toString())
             }

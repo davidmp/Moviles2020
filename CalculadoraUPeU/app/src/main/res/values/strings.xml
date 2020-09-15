@@ -9,4 +9,7 @@
 
     <string name="hello_first_fragment">Calculadora UPeU</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="text_btn9">9</string>
+    <string name="text_btn8">8</string>
 </resources>
