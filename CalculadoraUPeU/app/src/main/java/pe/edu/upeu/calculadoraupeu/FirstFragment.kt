@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_first.*
 class FirstFragment : Fragment(),View.OnClickListener {
     internal var valorA=""
     internal var operador=' '
-    internal var resultado:Float?=0f
+    internal var resultado:Float?=00f
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,

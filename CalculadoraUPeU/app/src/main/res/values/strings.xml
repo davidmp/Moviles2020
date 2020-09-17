@@ -12,4 +12,13 @@
 
     <string name="text_btn9">9</string>
     <string name="text_btn8">8</string>
+    <string name="text_btn7">7</string>
+    <string name="text_btn6">6</string>
+    <string name="text_btn5">5</string>
+    <string name="text_btn4">4</string>
+    <string name="text_btn3">3</string>
+    <string name="text_btn2">2</string>
+    <string name="text_nombrep">Nombre</string>
+
+
 </resources>

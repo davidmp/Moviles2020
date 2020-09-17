@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="image_database" type="drawable">@drawable/database</item>
+    <item name="image_file" type="drawable">@drawable/file</item>
+    <item name="img_phone" type="drawable">@android:drawable/stat_sys_phone_call</item>
+</resources>

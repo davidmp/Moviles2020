@@ -1,0 +1,4 @@
+<resources>
+    <string name="hello_first_fragment">Calculadora UPeU</string>
+    <string name="text_nombrep">Nombre:</string>
+</resources>

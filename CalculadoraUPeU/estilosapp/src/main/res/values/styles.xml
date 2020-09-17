@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/navigationBarColor</item>
+    </style>
+
+    <style name="BaseTheme.Red" parent="AppTheme">
+        <item name="colorPrimary">@color/material_red_500</item>
+        <item name="colorPrimaryDark">@color/material_red_700</item>
+        <item name="colorAccent">@color/material_red_a700</item>
+        <item name="android:navigationBarColor">@color/material_red_300</item>
+    </style>
+
+    <style name="AppTheme.Red" parent="BaseTheme.Red">
+    </style>
+
+    <style name="BaseTheme.Orange" parent="AppTheme">
+        <item name="colorPrimary">@color/material_orange_500</item>
+        <item name="colorPrimaryDark">@color/material_orange_700</item>
+        <item name="colorAccent">@color/material_orange_a700</item>
+        <item name="android:navigationBarColor">@color/material_orange_300</item>
+        <item name="android:colorButtonNormal">@color/material_orange_600</item>
+        <item name="android:editTextColor">@color/material_orange_900</item>
+    </style>
+
+    <style name="AppTheme.Orange" parent="BaseTheme.Orange">
+        <item name="buttonStyle">@style/PrimaryColoredButton</item>
+    </style>
+
+    <style name="PrimaryColoredButton" parent="Base.Widget.AppCompat.Button.Colored">
+        <!---<item name="android:drawableBottom">@drawable/image_file</item>-->
+    </style>
+
+</resources>
