@@ -36,7 +36,7 @@ class QrFragment : Fragment(), ZBarScannerView.ResultHandler {
             mensaje.text = it
         })
         initializeQRCamera()
-       // onClicks()
+        onClicks()
         return mView.rootView
 
 
@@ -81,5 +81,25 @@ class QrFragment : Fragment(), ZBarScannerView.ResultHandler {
         scannerView.resumeCameraPreview(this)
     }
 
+
+    private fun onClicks() {
+        mView.flashToggle.setOnClickListener {
+            if (mView.flashToggle.isSelected) {
+                offFlashLight()
+            } else {
+                onFlashLight()
+            }
+        }
+    }
+
+    private fun onFlashLight() {
+        mView.flashToggle.isSelected = true
+        scannerView.flash = true
+    }
+
+    private fun offFlashLight() {
+        mView.flashToggle.isSelected = false
+        scannerView.flash = false
+    }
 
 }
