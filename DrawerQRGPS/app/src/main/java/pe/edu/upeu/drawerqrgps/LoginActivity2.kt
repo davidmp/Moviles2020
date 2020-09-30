@@ -22,7 +22,7 @@ class LoginActivity2 : AppCompatActivity() {
         }, 2000)
     }
     private fun checkForPermission() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             gotToMainActivity()
         } else {
             requestPermission()
@@ -37,7 +37,7 @@ class LoginActivity2 : AppCompatActivity() {
 
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
-            this, arrayOf(Manifest.permission.CAMERA),
+            this, arrayOf(Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION),
             CAMERA_PERMISSION_REQUEST_CODE
         )
     }
