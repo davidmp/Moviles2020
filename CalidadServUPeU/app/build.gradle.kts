@@ -4,8 +4,8 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("kotlin-android-extensions")
-    //id("dagger.hilt.android.plugin")
-    //id("org.jlleitschuh.gradle.ktlint")
+    id("dagger.hilt.android.plugin")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -20,6 +20,18 @@ android {
         versionName ="1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments.plusAssign(
+                    hashMapOf(
+                        "room.schemaLocation" to "$projectDir/schemas",
+                        "room.incremental" to "true",
+                        "room.expandProjection" to "true"
+                    )
+                )
+            }
+        }
     }
     buildFeatures.viewBinding = true
     buildTypes {
@@ -41,12 +53,12 @@ android {
         exclude("META-INF/*.kotlin_module")
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-    }
+}
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -122,4 +134,9 @@ dependencies {
     //QR
     implementation(qr.zbar)
 
+}
+
+ktlint {
+    android.set(true)
+    outputColorName.set("RED")
 }
