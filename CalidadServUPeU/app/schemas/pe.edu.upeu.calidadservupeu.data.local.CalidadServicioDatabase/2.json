@@ -1,0 +1,128 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "bcda2d6a0925ad7b1ef1bd001fb43625",
+    "entities": [
+      {
+        "tableName": "producto",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `nombre` TEXT, `precio` REAL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "precio",
+            "columnName": "precio",
+            "affinity": "REAL",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "area",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id_area` INTEGER, `nombre_a` TEXT, `estado_a` TEXT, `descripcion_a` TEXT, PRIMARY KEY(`id_area`))",
+        "fields": [
+          {
+            "fieldPath": "idArea",
+            "columnName": "id_area",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nombreA",
+            "columnName": "nombre_a",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estadoA",
+            "columnName": "estado_a",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "descripcionA",
+            "columnName": "descripcion_a",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id_area"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "subarea",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id_subarea` INTEGER, `nombre_sa` TEXT, `estado_sa` TEXT, `descripcion_sa` TEXT, `id_area` INTEGER, PRIMARY KEY(`id_subarea`))",
+        "fields": [
+          {
+            "fieldPath": "idSubarea",
+            "columnName": "id_subarea",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nombreSa",
+            "columnName": "nombre_sa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estado_sa",
+            "columnName": "estado_sa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "descripcionSa",
+            "columnName": "descripcion_sa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idArea",
+            "columnName": "id_area",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id_subarea"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bcda2d6a0925ad7b1ef1bd001fb43625')"
+    ]
+  }
+}

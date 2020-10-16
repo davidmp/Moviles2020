@@ -9,13 +9,13 @@ import retrofit2.http.Query
 
 interface ServiciosCalidadApi {
 
-    @GET("/producto/lista")
+    @GET("/CalidadServApi/producto/lista")
     suspend fun getProducto():Response<List<Producto>>
 
-    @GET("/producto/detail/{id}")
+    @GET("/CalidadServApi/producto/detail/{id}")
     suspend fun getProductoId(@Query("id") id: Int): Call<Producto>
 
     companion object{
-        const val SERVICIO_CALIDAD_API_URL="http://172.22.90.1/"
+        const val SERVICIO_CALIDAD_API_URL="http://ec2-35-168-111-51.compute-1.amazonaws.com:8080"
     }
 }

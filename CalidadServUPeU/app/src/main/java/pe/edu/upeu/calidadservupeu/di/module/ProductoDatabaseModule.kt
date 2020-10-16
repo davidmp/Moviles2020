@@ -15,7 +15,8 @@ class ProductoDatabaseModule {
     @Singleton
     @Provides
     fun provideDatabase(application:Application)=CalidadServicioDatabase.getInstance(application)
-
+    @Singleton
+    @Provides
     fun provideProductoDao(database: CalidadServicioDatabase)=database.getProductoDao()
 
 }

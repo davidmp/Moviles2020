@@ -1,5 +1,6 @@
 package pe.edu.upeu.calidadservupeu.data.repository
 
+import androidx.annotation.MainThread
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import pe.edu.upeu.calidadservupeu.data.local.dao.ProductoDao
@@ -24,6 +25,7 @@ class ProductoRepository @Inject constructor(
         }.asFlow()
     }
 
+    @MainThread
     fun getProductoById(productoId:Int):Flow<Producto> =productoDao.getProductoById(productoId)
 
 
