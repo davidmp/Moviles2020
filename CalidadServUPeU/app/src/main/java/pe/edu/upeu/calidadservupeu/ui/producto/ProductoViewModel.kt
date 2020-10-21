@@ -18,6 +18,7 @@ class ProductoViewModel @ViewModelInject constructor(
     private  val _productosLiveData=MutableLiveData<State<List<Producto>>>()
     val productosLidaData:LiveData<State<List<Producto>>>
         get() =_productosLiveData
+
     fun getProductos(){
         viewModelScope.launch { productoRepository.getAllProductos().collect{
             _productosLiveData.value=it

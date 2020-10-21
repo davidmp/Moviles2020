@@ -1,6 +1,7 @@
 package pe.edu.upeu.calidadservupeu.data.repository
 
 import androidx.annotation.MainThread
+import androidx.annotation.WorkerThread
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import pe.edu.upeu.calidadservupeu.data.local.dao.ProductoDao
@@ -28,5 +29,15 @@ class ProductoRepository @Inject constructor(
     @MainThread
     fun getProductoById(productoId:Int):Flow<Producto> =productoDao.getProductoById(productoId)
 
+    @WorkerThread
+    suspend fun deleteProducLocalById(producto: Producto)=productoDao.deleteProductById(producto)
 
+    @MainThread
+    suspend fun deleteProducRemoteById(productoId: Int)=servicioProductoApi.deleteProductId(productoId)
+
+    suspend fun deleteProducById(producto: Producto){
+        deleteProducLocalById(producto)
+        deleteProducRemoteById(producto.id!!)
+    }
+    
 }

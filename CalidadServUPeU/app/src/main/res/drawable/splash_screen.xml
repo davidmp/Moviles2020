@@ -10,7 +10,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/ic_menu_camera" />
+            android:src="@mipmap/ic_launcher_foreground" />
     </item>
 
 </layer-list>
