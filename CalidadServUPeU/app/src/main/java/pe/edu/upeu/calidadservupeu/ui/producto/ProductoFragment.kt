@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.item_producto.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import pe.edu.upeu.calidadservupeu.R
 import pe.edu.upeu.calidadservupeu.databinding.ProductoFragmentBinding
@@ -36,6 +38,7 @@ class ProductoFragment : BaseFragment<ProductoViewModel, ProductoFragmentBinding
         mViewBinding.productosRecyclerView.adapter=mAdapter
         iniProducts()
         handleNetworkChanges()
+
         return mViewBinding.root
     }
 
@@ -72,13 +75,22 @@ class ProductoFragment : BaseFragment<ProductoViewModel, ProductoFragmentBinding
 
     override fun getViewBinding(): ProductoFragmentBinding=ProductoFragmentBinding.inflate(layoutInflater)
 
-    private fun onItemClicked(producto: Producto, imageView: ImageView){
-    val intent=Intent(this.context, DetailsActivity::class.java)
-        intent.putExtra(DetailsActivity.PRODUCT_ID,producto.id)
-        val options=ActivityOptionsCompat.makeSceneTransitionAnimation(
-            this.requireActivity(), imageView, imageView.transitionName
-        )
-        startActivity(intent, options.toBundle())
+    private fun onItemClicked(producto: Producto, imageView: ImageView, v:View){
+    when(v!!){
+        v.btnDelete->{
+            deleteProduct(producto)
+            Log.i("LLEGA_D", "Si va Eliminar")
+        }
+
+        else->{
+            val intent=Intent(this.context, DetailsActivity::class.java)
+            intent.putExtra(DetailsActivity.PRODUCT_ID,producto.id)
+            val options=ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this.requireActivity(), imageView, imageView.transitionName
+            )
+            startActivity(intent, options.toBundle())
+        }
+    }
     }
 
     private fun iniProducts(){
@@ -103,6 +115,10 @@ class ProductoFragment : BaseFragment<ProductoViewModel, ProductoFragmentBinding
             getProductos()
         }
 
+    }
+
+    private fun deleteProduct(producto: Producto){
+        mViewModel.deleteProductById(producto)
     }
 
     private fun getProductos(){

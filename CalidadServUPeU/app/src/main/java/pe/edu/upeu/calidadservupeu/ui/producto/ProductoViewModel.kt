@@ -1,5 +1,6 @@
 package pe.edu.upeu.calidadservupeu.ui.producto
 
+import android.util.Log
 import androidx.hilt.Assisted
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import androidx.hilt.lifecycle.ViewModelInject
@@ -23,6 +24,16 @@ class ProductoViewModel @ViewModelInject constructor(
         viewModelScope.launch { productoRepository.getAllProductos().collect{
             _productosLiveData.value=it
         } }
+    }
+
+    fun deleteProductById(producto: Producto){
+        viewModelScope.launch {
+           productoRepository.deleteProducById(producto)
+           productoRepository.getAllProductos().collect{
+                _productosLiveData.value=it
+            }
+            Log.i("LLEGA_DMP", "Esta llegando"+producto.id)
+        }
     }
 
 }

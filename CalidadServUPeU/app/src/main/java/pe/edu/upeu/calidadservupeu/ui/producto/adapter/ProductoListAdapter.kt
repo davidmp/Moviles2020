@@ -1,6 +1,7 @@
 package pe.edu.upeu.calidadservupeu.ui.producto.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +11,7 @@ import pe.edu.upeu.calidadservupeu.model.Producto
 import pe.edu.upeu.calidadservupeu.ui.producto.viewholder.ProductoViewHolder
 
 class ProductoListAdapter(
-    private val onItemClicked: (Producto, ImageView)->Unit
+    private val onItemClicked: (Producto, ImageView, View)->Unit
 ):ListAdapter<Producto, ProductoViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoViewHolder =
         ProductoViewHolder(

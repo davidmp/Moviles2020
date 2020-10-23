@@ -1,5 +1,6 @@
 package pe.edu.upeu.calidadservupeu.data.repository
 
+import android.util.Log
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -32,6 +33,12 @@ class ProductoRepository @Inject constructor(
     @WorkerThread
     suspend fun deleteProducLocalById(producto: Producto)=productoDao.deleteProductById(producto)
 
+    @WorkerThread
+    suspend fun updateProducLocal(producto: Producto)=productoDao.updateProductosOne(producto)
+
+    @MainThread
+    suspend fun updateProducRemote(producto: Producto)=servicioProductoApi.updateProductId(producto.id!!,producto)
+
     @MainThread
     suspend fun deleteProducRemoteById(productoId: Int)=servicioProductoApi.deleteProductId(productoId)
 
@@ -39,5 +46,15 @@ class ProductoRepository @Inject constructor(
         deleteProducLocalById(producto)
         deleteProducRemoteById(producto.id!!)
     }
-    
+
+
+   suspend fun updateProduct(producto: Producto){
+        Log.i("LLEGA_UU", "Holas"+producto.id)
+        updateProducLocal(producto)
+        updateProducRemote(producto)
+    }
+
+    /*fun updateProducto(producto: Producto){
+        updateProductByIb(producto.id!!, producto)
+    }*/
 }
