@@ -47,14 +47,12 @@ class ProductoRepository @Inject constructor(
         deleteProducRemoteById(producto.id!!)
     }
 
-
    suspend fun updateProduct(producto: Producto){
         Log.i("LLEGA_UU", "Holas"+producto.id)
         updateProducLocal(producto)
         updateProducRemote(producto)
     }
 
-    /*fun updateProducto(producto: Producto){
-        updateProductByIb(producto.id!!, producto)
-    }*/
+    @MainThread
+    suspend fun insertProduct(producto: Producto)=servicioProductoApi.addProduct(producto)
 }

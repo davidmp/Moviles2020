@@ -36,4 +36,13 @@ class ProductoViewModel @ViewModelInject constructor(
         }
     }
 
+    fun createProduct(producto: Producto){
+        viewModelScope.launch {
+            productoRepository.insertProduct(producto)
+            productoRepository.getAllProductos().collect{
+                _productosLiveData.value=it
+            }
+        }
+    }
+
 }

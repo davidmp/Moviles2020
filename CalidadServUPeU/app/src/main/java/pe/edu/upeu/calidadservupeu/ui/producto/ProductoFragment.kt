@@ -2,6 +2,7 @@ package pe.edu.upeu.calidadservupeu.ui.producto
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -13,7 +14,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.formcreate_product.*
+import kotlinx.android.synthetic.main.formcreate_product.view.*
 import kotlinx.android.synthetic.main.item_producto.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import pe.edu.upeu.calidadservupeu.R
@@ -36,8 +40,35 @@ class ProductoFragment : BaseFragment<ProductoViewModel, ProductoFragmentBinding
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         mViewBinding.productosRecyclerView.adapter=mAdapter
+
+        //val fab: FloatingActionButton = findViewById(R.id.fab)
+        mViewBinding.fab.setOnClickListener { view ->
+           /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()*/
+
+            val mDialogView=LayoutInflater.from(this.requireContext()).inflate(R.layout.formcreate_product,null)
+            val mBuild=AlertDialog.Builder(this.requireContext()).setView(mDialogView)
+                .setTitle("Formulario")
+            val mAlertDialog=mBuild.show()
+            mDialogView.btnGuardar.setOnClickListener {
+                val productoX=Producto()
+                productoX.nombre=mDialogView.txtNombre.text.toString()
+                productoX.precio=mDialogView.txtPrecio.text.toString().toFloat()
+                addProduct(productoX)
+                Log.i("DSI", "Si funciona:"+mDialogView.txtNombre.text)
+                mAlertDialog.dismiss()
+            //val name=mDialogView.dialo
+            }
+            mDialogView.btnCancelar.setOnClickListener{
+                mAlertDialog.dismiss()
+            }
+        }
+
+
         iniProducts()
         handleNetworkChanges()
+
+
 
         return mViewBinding.root
     }
@@ -119,6 +150,10 @@ class ProductoFragment : BaseFragment<ProductoViewModel, ProductoFragmentBinding
 
     private fun deleteProduct(producto: Producto){
         mViewModel.deleteProductById(producto)
+    }
+
+    private fun addProduct(producto: Producto){
+        mViewModel.createProduct(producto)
     }
 
     private fun getProductos(){
