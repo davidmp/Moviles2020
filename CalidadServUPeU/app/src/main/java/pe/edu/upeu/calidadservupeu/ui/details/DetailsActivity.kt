@@ -1,6 +1,7 @@
 package pe.edu.upeu.calidadservupeu.ui.details
 
 import android.app.AlertDialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +18,9 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import pe.edu.upeu.calidadservupeu.R
 import pe.edu.upeu.calidadservupeu.databinding.ActivityDetailsBinding
 import pe.edu.upeu.calidadservupeu.model.Producto
+import pe.edu.upeu.calidadservupeu.model.remote.User
 import pe.edu.upeu.calidadservupeu.ui.base.BaseActivity
+import pe.edu.upeu.calidadservupeu.utils.UtilsToken
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -82,7 +85,18 @@ class DetailsActivity : BaseActivity<ProductDetailsViewModel, ActivityDetailsBin
                 }
                 return true
             }
+            R.id.action_share->{
+                var user=User()
+                 mViewModel.login(user).apply {
+                     Log.i("TOKENT", "VERRR"+UtilsToken.TOKEN_CONTENT)
+                 }
 
+               /* val sharedPreference =  getSharedPreferences("TOKEN",Context.MODE_PRIVATE)
+                var editor = sharedPreference.edit()
+
+                editor.putString("token",mViewModel.userX!!.bearer+" "+mViewModel.userX!!.token)
+                editor.commit()*/
+            }
         }
         return super.onOptionsItemSelected(item)
     }

@@ -3,6 +3,7 @@ package pe.edu.upeu.calidadservupeu.ui.producto
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -45,7 +46,8 @@ class ProductoFragment : BaseFragment<ProductoViewModel, ProductoFragmentBinding
         mViewBinding.fab.setOnClickListener { view ->
            /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()*/
-
+            Log.i("TOKENT", ""+UtilsToken.TOKEN_CONTENT)
+            //mViewModel.createProduct(token!!,producto)
             val mDialogView=LayoutInflater.from(this.requireContext()).inflate(R.layout.formcreate_product,null)
             val mBuild=AlertDialog.Builder(this.requireContext()).setView(mDialogView)
                 .setTitle("Formulario")
@@ -153,7 +155,7 @@ class ProductoFragment : BaseFragment<ProductoViewModel, ProductoFragmentBinding
     }
 
     private fun addProduct(producto: Producto){
-        mViewModel.createProduct(producto)
+        mViewModel.createProduct(UtilsToken.TOKEN_CONTENT, producto)
     }
 
     private fun getProductos(){

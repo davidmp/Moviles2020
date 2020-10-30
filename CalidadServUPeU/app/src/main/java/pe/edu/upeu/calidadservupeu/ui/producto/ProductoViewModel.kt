@@ -36,9 +36,10 @@ class ProductoViewModel @ViewModelInject constructor(
         }
     }
 
-    fun createProduct(producto: Producto){
+    fun createProduct(token:String,producto: Producto){
         viewModelScope.launch {
-            productoRepository.insertProduct(producto)
+            Log.i("LLEGA_TOKEN", token)
+            productoRepository.insertProduct(token,producto)
             productoRepository.getAllProductos().collect{
                 _productosLiveData.value=it
             }

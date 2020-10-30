@@ -9,6 +9,7 @@ import pe.edu.upeu.calidadservupeu.data.local.dao.ProductoDao
 import pe.edu.upeu.calidadservupeu.data.remote.ServiciosCalidadApi
 import pe.edu.upeu.calidadservupeu.model.Producto
 import pe.edu.upeu.calidadservupeu.model.State
+import pe.edu.upeu.calidadservupeu.model.remote.User
 import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -54,5 +55,9 @@ class ProductoRepository @Inject constructor(
     }
 
     @MainThread
-    suspend fun insertProduct(producto: Producto)=servicioProductoApi.addProduct(producto)
+    suspend fun insertProduct(token:String, producto: Producto)=servicioProductoApi.addProduct(token,producto)
+
+    @MainThread
+    suspend fun loginUser(user: User)=servicioProductoApi.login(user)
+
 }
