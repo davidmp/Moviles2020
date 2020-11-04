@@ -7,7 +7,7 @@ data class Rol(
 data class User(
     val token:String="",
     val bearer:String="",
-    val nombreUsuario:String="user",
+    val nombreUsuario:String="admin",
     val password:String="123456",
     val authorities:List<Rol>?=null
 )

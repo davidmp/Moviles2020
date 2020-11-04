@@ -8,25 +8,31 @@ import retrofit2.http.*
 
 interface ServiciosCalidadApi {
 
-    @GET("/CalidadServApi/producto/lista")
+    //@GET("/CalidadServApi/producto/lista")
+    @GET("/producto/lista")
     suspend fun getProducto():Response<List<Producto>>
 
-    @GET("/CalidadServApi/producto/detail/{id}")
+    @GET("/producto/detail/{id}")
+    //@GET("/CalidadServApi/producto/detail/{id}")
     suspend fun getProductoId(@Query("id") id: Int): Call<Producto>
 
-    @POST("/CalidadServApi/producto/create")
+    @POST("/producto/create")
+    //@POST("/CalidadServApi/producto/create")
     suspend fun addProduct(@Header("Authorization") token:String, @Body producto: Producto):Response<Void>
 
-    @DELETE("/CalidadServApi/producto/delete/{id}")
+    //@DELETE("/CalidadServApi/producto/delete/{id}")
+    @DELETE("/producto/delete/{id}")
     suspend fun deleteProductId(@Path("id") id:Int):Response<Void>
 
-    @PUT("/CalidadServApi/producto/update/{id}")
+    @PUT("/producto/update/{id}")
+    //@PUT("/CalidadServApi/producto/update/{id}")
     suspend fun updateProductId(@Path("id") id:Int,  @Body product:Producto):Response<Void>
 
-    @POST("/CalidadServApi/auth/login")
+    //@POST("/CalidadServApi/auth/login")
+    @POST("/auth/login")
     suspend fun login(@Body user: User):User
 
     companion object{
-        const val SERVICIO_CALIDAD_API_URL="http://ec2-35-168-111-51.compute-1.amazonaws.com:8080"
+        const val SERVICIO_CALIDAD_API_URL="http://172.22.90.1:8080"
     }
 }
