@@ -1,3 +1,4 @@
+import 'package:calidad_servicioupeu/ui/listaestado/view_streams.dart';
 import 'package:calidad_servicioupeu/ui/theme/appTheme.dart';
 import 'package:calidad_servicioupeu/ui/drawer/drawerUserController.dart';
 import 'package:calidad_servicioupeu/ui/drawer/homeDrawer.dart';
@@ -51,7 +52,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       drawerIndex = drawerIndexdata;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
-          //screenView = ListViewJsonapi();
+          screenView = MyApp();
           //screenView = RegisterActivity();
         });
       } else if (drawerIndex == DrawerIndex.Help) {
