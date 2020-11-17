@@ -1,4 +1,5 @@
 import 'package:calidad_servicioupeu/ui/listaestado/view_streams.dart';
+import 'package:calidad_servicioupeu/ui/listaproducto/main_productos.dart';
 import 'package:calidad_servicioupeu/ui/theme/appTheme.dart';
 import 'package:calidad_servicioupeu/ui/drawer/drawerUserController.dart';
 import 'package:calidad_servicioupeu/ui/drawer/homeDrawer.dart';
@@ -57,7 +58,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
-          // screenView = HelpScreen();
+          screenView = MainProducto();
         });
       } else if (drawerIndex == DrawerIndex.FeedBack) {
         setState(() {

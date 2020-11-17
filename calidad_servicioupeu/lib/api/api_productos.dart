@@ -1,8 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:calidad_servicioupeu/modelo/productos_modelo.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
+
 import 'package:dio/dio.dart' hide Headers;
 import 'dart:io';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'api_productos.g.dart';
 
@@ -10,8 +14,17 @@ part 'api_productos.g.dart';
 abstract class ProductosApi{
   factory ProductosApi(Dio dio, {String baseUrl})=_ProductosApi;
 
-  @GET("/lista")
+  static ProductosApi create(){
+    final dio=Dio();
+    dio.interceptors.add(PrettyDioLogger());
+    return ProductosApi(dio);
+  }
+  
+  @GET("/lista2")
   Future<List<ModeloProductos>> getProductos();
+
+  @GET("/lista2")
+  Future<List<ModeloProductos>> getProductos2(@Header("Authorization") String token);
 
 }
 
