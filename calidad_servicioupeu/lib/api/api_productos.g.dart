@@ -4,7 +4,7 @@ part of 'api_productos.dart';
 class _ProductosApi implements ProductosApi{
   _ProductosApi(this._dio, {this.baseUrl}){
     ArgumentError.checkNotNull(_dio, '_dio');
-    this.baseUrl ??="http://172.22.90.1:8080/producto";
+    this.baseUrl ??="http://172.22.90.1:8080";
   }
 
   final Dio _dio;
@@ -19,7 +19,7 @@ class _ProductosApi implements ProductosApi{
     const _extra=<String, dynamic>{};
     final queryParameters= <String, dynamic>{};
     final _data=<String, dynamic>{};
-    final Response<List<dynamic>> _result= await _dio.request('/lista2',
+    final Response<List<dynamic>> _result= await _dio.request('/producto/lista2',
         queryParameters:queryParameters,
         options:RequestOptions(
     method:'GET',
@@ -44,7 +44,7 @@ class _ProductosApi implements ProductosApi{
     const _extra=<String, dynamic>{};
     final queryParameters= <String, dynamic>{};
     final _data=<String, dynamic>{};
-    final Response<List<dynamic>> _result= await _dio.request('/lista2',
+    final Response<List<dynamic>> _result= await _dio.request('/producto/lista2',
         queryParameters:queryParameters,
         options:RequestOptions(
             method:'GET',
@@ -57,6 +57,26 @@ class _ProductosApi implements ProductosApi{
         .map((dynamic i)=>ModeloProductos.fromJson(i as Map<String, dynamic>)).toList();
 
 
+    return Future.value(value);
+  }
+
+  @override
+  login(user) async{
+    ArgumentError.checkNotNull(user, "user");
+    const _extra=<String, dynamic>{};
+    final queryParameters= <String, dynamic>{};
+    final _data=<String, dynamic>{};
+    _data.addAll(user.toJson()?? <String, dynamic>{});
+    final Response<Map<String,dynamic>> _result= await _dio.request('/auth/login',
+        queryParameters:queryParameters,
+        options:RequestOptions(
+            method:'POST',
+            headers:<String, dynamic>{},
+            extra:_extra,
+            baseUrl:baseUrl
+        ),
+        data:_data);
+    var value=ModeloUsuario.fromJson(_result.data);
     return Future.value(value);
   }
 

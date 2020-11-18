@@ -3,6 +3,7 @@
 
 import 'package:calidad_servicioupeu/api/api_productos.dart';
 import 'package:calidad_servicioupeu/modelo/productos_modelo.dart';
+import 'package:calidad_servicioupeu/modelo/usuario_modelo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,20 +19,26 @@ class ListaProducto extends StatelessWidget{
         body: _listFutureProductos(context),
         floatingActionButton: FloatingActionButton(
           onPressed: () async{
-            var token="Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYwNTI4MDcyMCwiZXhwIjoxNjA1MzE2NzIwfQ.zDf7F6H3kRGYiU7wnxX2WHarNvt-kcyaJTeEYgBRxGPm7vc4lDsrnLlgte7yfCX3tn4JdoYE3St_MitfyxN7sQ";
+            var token="Token";
 
             final prefs= await SharedPreferences.getInstance();
-            prefs.setString("token", token);
+
 
             final api=Provider.of<ProductosApi>(context, listen: false);
-            api.getProductos2(token).then((value) {
-              value.forEach((element) {
-                print("Productos ${element.nombre}");
-              });
+            final usuario=new ModeloUsuario();
+            usuario.nombreUsuario="admin";
+            usuario.password="123456";
+
+
+            api.login(usuario).then((value) {
+
+              print("Probando!!!......"+value.nombreUsuario);
+              token=value.bearer+" "+value.token;
+              prefs.setString("token", token);
             }).catchError((onError){
               print(onError.toString());
             });
-            ;
+
           },
           child: Icon(Icons.account_balance),
         ),

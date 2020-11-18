@@ -1,4 +1,7 @@
+import 'package:calidad_servicioupeu/api/api_productos.dart';
+import 'package:calidad_servicioupeu/modelo/usuario_modelo.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
@@ -164,20 +167,67 @@ class _LoginActivityState extends State<LoginActivity>{
                 MaterialButton(
                   color: Colors.blue,
                   textColor: Colors.white,
-                  onPressed: () {
+                  /*onPressed: () {
                     doLogin(emailController.text.trim(),
                         passwordController.text.trim());
+                  },*/
+
+                  onPressed: () async{
+                    var token="Token";
+
+                    final prefs= await SharedPreferences.getInstance();
+
+
+                    final api=Provider.of<ProductosApi>(context, listen: false);
+                    final usuario=new ModeloUsuario();
+                    usuario.nombreUsuario=emailController.text.trim();
+                    usuario.password=passwordController.text.trim();
+
+                    if (usuario.password.length < 5) {
+                      toast("La contraseña contiene al menos 8 caracteres.");
+                    }else{
+                      api.login(usuario).then((value) {
+                        print("Probando!!!......"+value.nombreUsuario);
+                        token=value.bearer+" "+value.token;
+                        prefs.setString("token", token);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NavigationHomeScreen()));
+
+                      }).catchError((onError){
+                        print(onError.toString());
+                      });
+                    }
                   },
                   child: Text("Ingresar"),
                 ),
                 MaterialButton(
                   color: Colors.orange,
                   textColor: Colors.white,
-                  onPressed: () => {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => NavigationHomeScreen()))
+                  onPressed: () async{
+                    var token="Token";
+
+                    final prefs= await SharedPreferences.getInstance();
+
+
+                    final api=Provider.of<ProductosApi>(context, listen: false);
+                    final usuario=new ModeloUsuario();
+                    usuario.nombreUsuario="admin";
+                    usuario.password="123456";
+                    api.login(usuario).then((value) {
+                      print("Probando!!!......"+value.nombreUsuario);
+                      token=value.bearer+" "+value.token;
+                      prefs.setString("token", token);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NavigationHomeScreen()));
+
+                    }).catchError((onError){
+                      print(onError.toString());
+                    });
+
                   },
                   child: Text("Home"),
                 )

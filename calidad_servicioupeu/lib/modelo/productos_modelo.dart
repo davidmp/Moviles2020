@@ -1,9 +1,4 @@
 
-/*
-* "id": 1,
-"nombre": "Celular Sansumng",
-"precio": 3000.0
-* */
 class ModeloProductos{
   int id;
   String nombre;

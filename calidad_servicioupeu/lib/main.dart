@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:calidad_servicioupeu/ui/login_main.dart';
 import 'package:calidad_servicioupeu/ui/theme/appTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.iOS,
       ),
-      home: LoginActivity(),
+      home: MainLogin(),
       /*home: Scaffold(
           appBar: AppBar(title: Text('Primera Aplicacion')),
           body: Center(child: Text('Hola mundo!'))),*/
