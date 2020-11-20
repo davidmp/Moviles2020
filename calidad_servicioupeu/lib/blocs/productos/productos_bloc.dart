@@ -1,0 +1,36 @@
+
+
+import 'dart:async';
+
+
+import 'package:calidad_servicioupeu/modelo/productos_modelo.dart';
+import 'package:calidad_servicioupeu/repository/ProductosRepository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+part 'productos_event.dart';
+part 'productos_state.dart';
+
+class ProductosBloc extends Bloc<ProductosEvent, ProductosState>{
+
+  final ProductosRepository _productosRepository;
+
+  ProductosBloc({ProductosRepository productosRepository}) :
+        _productosRepository=productosRepository,
+        super(ProductosInitialState());
+
+
+  @override
+  Stream<ProductosState> mapEventToState(ProductosEvent event) async*{
+    if(event is ListarProductosEvent){
+      yield ProductosLoadingState();
+      try{
+        List<ModeloProductos> productosList= await _productosRepository.getProductos();
+        yield ProductosLoadedState(productosList);
+      }catch(e){
+        print("Error ${e.toString()}");
+        yield ProductosError(e);
+      }
+    }
+  }
+
+}

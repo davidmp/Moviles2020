@@ -30,6 +30,18 @@ abstract class ProductosApi{
   @POST("/auth/login")
   Future<ModeloUsuario> login(@Body() ModeloUsuario usuario);
 
+  @GET("/producto/detail/{id}")
+  Future<ModeloProductos> getProductoId(@Path("id") String id);
+
+  @DELETE("/producto/delete/{id}")
+  Future<void> deleteProducto(@Path("id") int id);
+
+  @PUT("/producto/update/{id}")
+  Future<ModeloProductos> updateProducto(@Path() String id, @Body() ModeloProductos producto);
+
+  @POST("/producto/create")
+  Future<ModeloProductos> createProducto(@Body() ModeloProductos producto);
+
 }
 
 

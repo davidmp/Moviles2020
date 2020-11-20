@@ -80,5 +80,32 @@ class _ProductosApi implements ProductosApi{
     return Future.value(value);
   }
 
+  @override
+  getProductoId(id) async{
+    ArgumentError.checkNotNull(id, 'id');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/producto/detail/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = ModeloProductos.fromJson(_result.data);
+    return Future.value(value);
+  }
+
+  @override
+  deleteProducto(id){}
+
+  @override
+  updateProducto(id, producto){}
+
+  @override
+  createProducto(producto){}
 
 }
