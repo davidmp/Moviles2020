@@ -100,12 +100,65 @@ class _ProductosApi implements ProductosApi{
   }
 
   @override
-  deleteProducto(id){}
+  deleteProducto(id) async{
+    ArgumentError.checkNotNull(id, '0');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/producto/delete/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'DELETE',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = ModeloMensaje.fromJson(_result.data);
+    return Future.value(value);
+  }
 
   @override
-  updateProducto(id, producto){}
+  updateProducto(id, producto) async{
+    ArgumentError.checkNotNull(id, '0');
+    ArgumentError.checkNotNull(producto, 'producto');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(producto.toJson() ?? <String, dynamic>{});
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/producto/update/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'PUT',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = ModeloMensaje.fromJson(_result.data);
+    return Future.value(value);
+  }
 
   @override
-  createProducto(producto){}
+  createProducto(producto) async{
+    ArgumentError.checkNotNull(producto, 'producto');
+    final prefs= await SharedPreferences.getInstance();
+    var tokenx=prefs.getString("token");
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(producto.toJson() ?? <String, dynamic>{});
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/producto/create',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{"Authorization":tokenx},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = ModeloMensaje.fromJson(_result.data);
+    return Future.value(value);
+  }
 
 }

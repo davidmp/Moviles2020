@@ -1,3 +1,4 @@
+import 'package:calidad_servicioupeu/modelo/mensaje_modelo.dart';
 import 'package:calidad_servicioupeu/modelo/usuario_modelo.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:calidad_servicioupeu/modelo/productos_modelo.dart';
@@ -34,13 +35,13 @@ abstract class ProductosApi{
   Future<ModeloProductos> getProductoId(@Path("id") String id);
 
   @DELETE("/producto/delete/{id}")
-  Future<void> deleteProducto(@Path("id") int id);
+  Future<ModeloMensaje> deleteProducto(@Path("id") int id);
 
   @PUT("/producto/update/{id}")
-  Future<ModeloProductos> updateProducto(@Path() String id, @Body() ModeloProductos producto);
+  Future<ModeloMensaje> updateProducto(@Path("id") int id, @Body() ModeloProductos producto);
 
   @POST("/producto/create")
-  Future<ModeloProductos> createProducto(@Body() ModeloProductos producto);
+  Future<ModeloMensaje> createProducto(@Body() ModeloProductos producto);
 
 }
 
