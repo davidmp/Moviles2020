@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "appIonicCapacitor",
+  "bundledWebRuntime": false,
+  "npmClient": "npm", 
+  "windowsAndroidStudioPath": "D:\\DESARROLLO ANDROID\\androidstudio\\bin\\studio64.exe",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
