@@ -12,8 +12,6 @@ import pe.edu.upeu.upeuactivity.ui.tabs.PageAdapter
 
 class TabxActivity : AppCompatActivity() {
 
-    private lateinit var drawer: DrawerLayout
-    private lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +21,6 @@ class TabxActivity : AppCompatActivity() {
 
         viewPager.adapter=PageAdapter(supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
-        //setSupportActionBar(toolbar)
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
 
